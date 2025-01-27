@@ -26,8 +26,8 @@ importers:
         specifier: ^1.20.0
         version: 1.20.0(typescript@5.7.3)
       '@mysten/wallet-standard':
-        specifier: ^0.13.23
-        version: 0.13.23(typescript@5.7.3)
+        specifier: ^0.13.24
+        version: 0.13.24(typescript@5.7.3)
       '@radix-ui/react-select':
         specifier: ^2.1.4
         version: 2.1.4(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -39,7 +39,7 @@ importers:
         version: 3.1.6(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@suiware/kit':
         specifier: ^0.6.0
-        version: 0.6.0(@mysten/dapp-kit@0.14.47(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@mysten/sui@1.20.0(typescript@5.7.3))(@mysten/suins@0.4.2(typescript@5.7.3))(@mysten/wallet-standard@0.13.23(typescript@5.7.3))(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 0.6.0(@mysten/dapp-kit@0.14.47(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@mysten/sui@1.20.0(typescript@5.7.3))(@mysten/suins@0.4.2(typescript@5.7.3))(@mysten/wallet-standard@0.13.24(typescript@5.7.3))(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tanstack/react-query':
         specifier: ^5.64.2
         version: 5.64.2(react@19.0.0)
@@ -426,12 +426,19 @@ packages:
     resolution: {integrity: sha512-/XLogwOYaSP31lPt377fj5b+8sRIyt2Opi/Ssos5dssPqol9vgvN/ZzV5Y5qVl4VquhATJHRpwV33B5rIVi7Ow==}
     engines: {node: '>=18'}
 
+  '@mysten/sui@1.21.0':
+    resolution: {integrity: sha512-A+UXOo2ODhmktV6J6lOIqelRtVvQ0V252T2qaoJ0E92HYjIi3xMNEQrqu4K8TcN3gZCjqK8jQZwmbYZku8rIpw==}
+    engines: {node: '>=18'}
+
   '@mysten/suins@0.4.2':
     resolution: {integrity: sha512-7CKlaOxgpvBR2IB7fKhie8m0uzy0uc7DxZDKvURMuIQ4++7dFTkkXO+6+ojgH9WmIiYQ9rx66g34DvkilwV7ug==}
     engines: {node: '>=16'}
 
   '@mysten/wallet-standard@0.13.23':
     resolution: {integrity: sha512-/RhwjNzDAA15r8Mm+Qk+ELv6iZ6Ls7giKWrWtkJqMMNRkOSX9exrLoqT7X3bZInvQOCAcMY+fXUaXAb6WL2Row==}
+
+  '@mysten/wallet-standard@0.13.24':
+    resolution: {integrity: sha512-g8N+dCtW/TfukxmOaB2CIJtBckzYefyNHjIbQNjisf54NyDUGNw/QyS0nxnBxcVBhvjZxh7cYo4YqaUn4mCjsA==}
 
   '@mysten/zksend@0.12.13':
     resolution: {integrity: sha512-FsJ2Ft31Tv6buzPJWxhEJfm50qtMqH3z11XNfYX1/yIwp4JuReF6eUCacM+stDsQ8kjoaF4+gW+DE5rkiLdgzQ==}
@@ -1066,61 +1073,51 @@ packages:
     resolution: {integrity: sha512-0O8ViX+QcBd3ZmGlcFTnYXZKGbFu09EhgD27tgTdGnkcYXLat4KIsBBQeKLR2xZDCXdIBAlWLkiXE1+rJpCxFw==}
     cpu: [arm]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.31.0':
     resolution: {integrity: sha512-w5IzG0wTVv7B0/SwDnMYmbr2uERQp999q8FMkKG1I+j8hpPX2BYFjWe69xbhbP6J9h2gId/7ogesl9hwblFwwg==}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.31.0':
     resolution: {integrity: sha512-JyFFshbN5xwy6fulZ8B/8qOqENRmDdEkcIMF0Zz+RsfamEW+Zabl5jAb0IozP/8UKnJ7g2FtZZPEUIAlUSX8cA==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.31.0':
     resolution: {integrity: sha512-kpQXQ0UPFeMPmPYksiBL9WS/BDiQEjRGMfklVIsA0Sng347H8W2iexch+IEwaR7OVSKtr2ZFxggt11zVIlZ25g==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.31.0':
     resolution: {integrity: sha512-pMlxLjt60iQTzt9iBb3jZphFIl55a70wexvo8p+vVFK+7ifTRookdoXX3bOsRdmfD+OKnMozKO6XM4zR0sHRrQ==}
     cpu: [loong64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.31.0':
     resolution: {integrity: sha512-D7TXT7I/uKEuWiRkEFbed1UUYZwcJDU4vZQdPTcepK7ecPhzKOYk4Er2YR4uHKme4qDeIh6N3XrLfpuM7vzRWQ==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.31.0':
     resolution: {integrity: sha512-wal2Tc8O5lMBtoePLBYRKj2CImUCJ4UNGJlLwspx7QApYny7K1cUYlzQ/4IGQBLmm+y0RS7dwc3TDO/pmcneTw==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.31.0':
     resolution: {integrity: sha512-O1o5EUI0+RRMkK9wiTVpk2tyzXdXefHtRTIjBbmFREmNMy7pFeYXCFGbhKFwISA3UOExlo5GGUuuj3oMKdK6JQ==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.31.0':
     resolution: {integrity: sha512-zSoHl356vKnNxwOWnLd60ixHNPRBglxpv2g7q0Cd3Pmr561gf0HiAcUBRL3S1vPqRC17Zo2CX/9cPkqTIiai1g==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.31.0':
     resolution: {integrity: sha512-ypB/HMtcSGhKUQNiFwqgdclWNRrAYDH8iMYH4etw/ZlGwiTVxBz2tDrGRrPlfZu6QjXwtd+C3Zib5pFqID97ZA==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.31.0':
     resolution: {integrity: sha512-JuhN2xdI/m8Hr+aVO3vspO7OQfUFO6bKLIRTAy0U15vmWjnZDLrEgCZ2s6+scAYaQVpYSh9tZtRijApw9IXyMw==}
@@ -1186,28 +1183,24 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.10.8':
     resolution: {integrity: sha512-wI0Hny8fHbBK/OjJ7eFYP0uDKiCMMMr5OBWGKMRRUvWs2zlGeJQZbwUeCnWuLLXzDfL+feMfh5TieYlqKTTtRw==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@swc/core-linux-x64-gnu@1.10.8':
     resolution: {integrity: sha512-24FCRUFO8gzPP2eu3soHTm3lk+ktcsIhdM2DTOlXGA+2TBYFWgAZX/yZV+eeRrtIZYSr4OcOWsNWnQ5Ma4budA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.10.8':
     resolution: {integrity: sha512-mBo7M/FmUhoWpUG17MLbS98iRA7t6ThxQBWDJZd322whkN1GqrvumYm2wvvjmoMTeDOPwAL3hIIa5H+Q4vb1zA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.10.8':
     resolution: {integrity: sha512-rXJ9y77JZZXoZkgFR0mObKa3TethRBJ6Exs/pwhScl9pz4qsfxhj/bQbEu1g1i/ihmd0l+IKZwGSC7Ibh3HA2Q==}
@@ -3097,9 +3090,29 @@ snapshots:
       - '@gql.tada/vue-support'
       - typescript
 
+  '@mysten/sui@1.21.0(typescript@5.7.3)':
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
+      '@mysten/bcs': 1.2.1
+      '@noble/curves': 1.8.1
+      '@noble/hashes': 1.7.1
+      '@scure/bip32': 1.6.2
+      '@scure/bip39': 1.5.4
+      '@suchipi/femver': 1.0.0
+      bech32: 2.0.0
+      gql.tada: 1.8.10(graphql@16.10.0)(typescript@5.7.3)
+      graphql: 16.10.0
+      jose: 5.9.6
+      poseidon-lite: 0.2.1
+      valibot: 0.36.0
+    transitivePeerDependencies:
+      - '@gql.tada/svelte-support'
+      - '@gql.tada/vue-support'
+      - typescript
+
   '@mysten/suins@0.4.2(typescript@5.7.3)':
     dependencies:
-      '@mysten/sui': 1.20.0(typescript@5.7.3)
+      '@mysten/sui': 1.21.0(typescript@5.7.3)
     transitivePeerDependencies:
       - '@gql.tada/svelte-support'
       - '@gql.tada/vue-support'
@@ -3108,6 +3121,15 @@ snapshots:
   '@mysten/wallet-standard@0.13.23(typescript@5.7.3)':
     dependencies:
       '@mysten/sui': 1.20.0(typescript@5.7.3)
+      '@wallet-standard/core': 1.1.0
+    transitivePeerDependencies:
+      - '@gql.tada/svelte-support'
+      - '@gql.tada/vue-support'
+      - typescript
+
+  '@mysten/wallet-standard@0.13.24(typescript@5.7.3)':
+    dependencies:
+      '@mysten/sui': 1.21.0(typescript@5.7.3)
       '@wallet-standard/core': 1.1.0
     transitivePeerDependencies:
       - '@gql.tada/svelte-support'
@@ -3893,12 +3915,12 @@ snapshots:
 
   '@suchipi/femver@1.0.0': {}
 
-  '@suiware/kit@0.6.0(@mysten/dapp-kit@0.14.47(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@mysten/sui@1.20.0(typescript@5.7.3))(@mysten/suins@0.4.2(typescript@5.7.3))(@mysten/wallet-standard@0.13.23(typescript@5.7.3))(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@suiware/kit@0.6.0(@mysten/dapp-kit@0.14.47(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@mysten/sui@1.20.0(typescript@5.7.3))(@mysten/suins@0.4.2(typescript@5.7.3))(@mysten/wallet-standard@0.13.24(typescript@5.7.3))(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@mysten/dapp-kit': 0.14.47(@tanstack/react-query@5.64.2(react@19.0.0))(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
       '@mysten/sui': 1.20.0(typescript@5.7.3)
       '@mysten/suins': 0.4.2(typescript@5.7.3)
-      '@mysten/wallet-standard': 0.13.23(typescript@5.7.3)
+      '@mysten/wallet-standard': 0.13.24(typescript@5.7.3)
       '@radix-ui/themes': 3.1.6(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tanstack/react-query': 5.64.2(react@19.0.0)
       bignumber.js: 9.1.2
