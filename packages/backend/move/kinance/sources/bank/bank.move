@@ -1,23 +1,22 @@
-module kinance::lending_pool;
+module kinance::bank;
 
 use sui::balance::{Self, Balance};
 use sui::coin::{Coin, TreasuryCap};
+use kinance::interest::{Self, Interest};
 
 // ERRORS
 const ERR_NOT_ENOUGH_BALANCE_FROM_POOL: u64 = 1;
 const ERR_NOT_OWNER: u64 = 2;
 const ERR_INPUT_OVER_LIMIT: u64 = 3;
 
-public struct LendingPool<phantom T, phantom YT> has key, store {
+public struct Bank<phantom T, phantom YT> has key, store {
     id: UID,
     // balance of lending pool
     balance: Balance<T>, 
     // balance of yield token
     yt_balance: Balance<YT>,
-    // treasury cap of yield token
-    lp_treausry: TreasuryCap<YT>,
     // interest rate
-    lending_interest_rate: u64,
+    interest: Interest,
     // borrow interest rate
     borrow_interest_rate: u64,
 }
@@ -32,16 +31,15 @@ public struct AdminCap has key, store {
     id: UID,
 }
 
-public fun create_pool<T, YT>(_admin: &AdminCap, ctx: &mut TxContext) {
-    let lending_pool = LendingPool<T> {
+public fun new<T, YT>(ctx: &mut TxContext) : Bank<T, YT> {
+    let bank = Bank<T, YT> {
         id: object::new(ctx),
         balance: balance::zero(),
+        yt_balance: balance::zero(),
         lending_interest_rate: 10,
         borrow_interest_rate: 15,
-        operation_cost: 1,
     };
-
-    transfer::share_object(lending_pool);
+    bank
 }
 
 // lend coin to lending pool
