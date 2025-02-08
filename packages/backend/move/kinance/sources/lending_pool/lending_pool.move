@@ -1,26 +1,47 @@
 module kinance::lending_pool;
 
-use sui::balance::{Balance};
-use sui::coin::{Coin};
-
-// will implement dynamic interest rate in the future, use constant for now
-const LEND_INTESREST_RATE: u64 = 10;
-const BORROW_INTESREST_RATE: u64 = 15;
-const OPERATION_COST: u64 = 1;
+use sui::balance::{Self, Balance};
+use sui::coin::{Coin, TreasuryCap};
 
 // ERRORS
 const ERR_NOT_ENOUGH_BALANCE_FROM_POOL: u64 = 1;
 const ERR_NOT_OWNER: u64 = 2;
+const ERR_INPUT_OVER_LIMIT: u64 = 3;
 
-public struct LendingPool<phantom T> has key {
+public struct LendingPool<phantom T, phantom YT> has key, store {
     id: UID,
-    balance: Balance<T>,
+    // balance of lending pool
+    balance: Balance<T>, 
+    // balance of yield token
+    yt_balance: Balance<YT>,
+    // treasury cap of yield token
+    lp_treausry: TreasuryCap<YT>,
+    // interest rate
+    lending_interest_rate: u64,
+    // borrow interest rate
+    borrow_interest_rate: u64,
 }
 
-public struct Receipt has key, store {
+public struct Receipt<T> has key {
     id: UID,
+    balance: Balance<T>,
     amount: u64,
-    owner: address,
+}
+
+public struct AdminCap has key, store {
+    id: UID,
+}
+
+public fun create_pool<T, YT>(_admin: &AdminCap, ctx: &mut TxContext) {
+    let lending_pool = LendingPool<T> {
+        id: object::new(ctx),
+        balance: balance::zero(),
+        lending_interest_rate: 10,
+        borrow_interest_rate: 15,
+        operation_cost: 1,
+    };
+
+    transfer::share_object(lending_pool);
 }
 
 // lend coin to lending pool
@@ -34,16 +55,50 @@ public fun lend<T>(
     let owner = ctx.sender();
     let balance = coin.into_balance();
     let amount = balance.value();
-    lendingPool.balance.join((balance));
+    lendingPool.balance.join(balance);
 
     let receipt = Receipt {
         id: object::new(ctx),
         amount: amount,
         owner: owner,
     };
-    
+
     transfer::transfer(receipt, ctx.sender());
 }
+
+// withdraw from lending pool
+// if withdraw all, return coin and receipt
+// if withdraw part, return coin and new receipt
+public fun withdraw<T>(
+    lendingPool: &mut LendingPool<T>, 
+    amount: u64, 
+    receipt: Receipt<T>,
+    ctx: &mut TxContext,
+): (Coin<T>, Receipt<T>){
+    let owner = ctx.sender();
+    assert!(receipt.owner == owner, ERR_NOT_OWNER);
+
+    let receipt_amount = receipt.balance.value();
+    assert!(amount <= receipt_amount, ERR_INPUT_OVER_LIMIT);
+    assert!(amount > 0, ERR_INPUT_OVER_LIMIT);
+
+    let pool_balance = lendingPool.balance.value();
+    assert!(pool_balance >= amount, ERR_NOT_ENOUGH_BALANCE_FROM_POOL);
+
+    let balance = lendingPool.balance.split(amount);
+    let coin = balance.into_coin(ctx);
+
+    let new_receipt = Receipt {
+        id: object::new(ctx),
+        balance: balance,
+        owner: owner,
+    };
+
+    transfer::public_transfer(coin, ctx.sender());
+    transfer::transfer(receipt, ctx.sender());
+    (coin, new_receipt)
+}
+
 
 // borrow coin from lending pool
 // return coin and receipt
@@ -54,7 +109,7 @@ public fun borrow<T>(
     lendingPool: &mut LendingPool<T>, 
     amount: u64, 
     ctx: &mut TxContext,
-): (Coin<T>, Receipt){
+): (Coin<T>, Receipt<T>){
     let owner = ctx.sender();
     let pool_balance = lendingPool.balance.value();
     assert!(pool_balance >= amount, ERR_NOT_ENOUGH_BALANCE_FROM_POOL);
@@ -64,36 +119,10 @@ public fun borrow<T>(
 
     let receipt = Receipt {
         id: object::new(ctx),
-        amount: amount,
+        balance: balance,
         owner: owner,
     };
     transfer::public_transfer(coin, ctx.sender());
     transfer::transfer(receipt, ctx.sender());
     (coin, receipt)
-}
-
-// repay to lending pool
-public fun repay<T>(
-    lendingPool: &mut LendingPool<T>, 
-    receipt: Receipt<T>, 
-    ctx: &mut TxContext,
-): (){
-    let owner = ctx.sender();
-    assert!(receipt.owner == owner, NOT_OWNER);
-    let amount = receipt.amount;
-    let balance = Balance::new(amount);
-    lendingPool.balance.join((balance));
-    transfer::transfer(receipt, ctx.sender());
-}
-
-// withdraw lending pool
-public fun withdraw<T>(
-    lendingPool: &mut LendingPool<T>, 
-    amount: u64, 
-    ctx: &mut TxContext,
-): (){
-    let owner = ctx.sender();
-    let balance = Balance::new(amount);
-    lendingPool.balance.split((balance));
-    transfer::transfer(balance.into_coin(), ctx.sender());
 }
