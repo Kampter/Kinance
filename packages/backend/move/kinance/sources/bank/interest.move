@@ -6,6 +6,7 @@ module kinance::interest;
 */
 use std::uq32_32::{Self, UQ32_32};
 use std::type_name::{Self, TypeName};
+
 use kinance::ac_table::{Self, AcTable, AcTableCap};
 
 public struct Interest has copy, store, drop{

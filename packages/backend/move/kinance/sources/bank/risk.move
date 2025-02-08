@@ -4,6 +4,7 @@ module kinance::risk;
     this module is used to calculate risk then liquidate the position
 */
 use std::type_name::{Self, TypeName};
+
 use kinance::ac_table::{Self, AcTable, AcTableCap};
 
 // the value are in percentage
